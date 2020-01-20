@@ -190,4 +190,108 @@ public class Review {
             totalVal += sentimentVal(word); 
             return totalVal; 
     }
+  
+  public static int starRating(String fileName) 
+    {
+        int totalSentiment = (int) totalSentiment(fileName);
+           
+        if(totalSentiment < 0) 
+        {
+            return 1; 
+        }
+        else if(totalSentiment < 5) 
+        {
+            return 2; 
+        }
+        else if(totalSentiment < 15) 
+        {
+            return 3;
+        }
+        else 
+        {
+            return 4; 
+        }
+    }
+
+    public static String fakeReview(String fileName)
+    {
+        String file = textToString(fileName);
+        String word = "";
+        String sentence = "";
+        
+        for(int i = 0; i < file.length(); i++)
+        {
+            String letter = file.substring(i, i + 1);
+            if(letter.equals(SPACE) || i == file.length() - 1)
+            {
+                if(i == file.length() - 1)  word += letter;
+                
+                if(word.startsWith("*"))
+                {
+                    sentence += randomPositiveAdj() + getPunctuation(word) + SPACE;
+                }
+                else
+                {
+                    sentence += word + SPACE;
+                }
+                word = "";
+            }
+            else
+            {
+                word += letter;
+            }
+        }
+        return sentence;
+    }
+    
+    public static String fakeReviewStronger(String fileName)
+    {
+        String file = textToString(fileName);
+        String word = "";
+        String sentence = "";
+        
+        for(int i = 0; i < file.length(); i++)
+        {
+            String letter = file.substring(i, i + 1);
+            if(letter.equals(SPACE) || i == file.length() - 1)
+            {
+                if(i == file.length() - 1)  word += letter;
+
+                if(word.startsWith("*"))
+                {
+                    double s = sentimentVal(word.substring(1));
+                    String newAdj = "";
+                    
+                    if(s < 0)
+                    {
+                        newAdj = randomPositiveAdj();
+                    }
+                    else if(s > 0)
+                    {
+                        while(sentimentVal(newAdj) <= s)
+                        {
+                            newAdj = randomPositiveAdj();
+                        }
+                    }
+                    else
+                    {
+                        newAdj = word.substring(1);
+                    }
+                    
+                    sentence += randomPositiveAdj() + getPunctuation(word) + SPACE;
+                }
+                else
+                {
+                    sentence += word + SPACE;
+                }
+                word = "";
+            }
+            else
+            {
+                word += letter;
+            }
+        }
+        return sentence;
+    }
+  
 }
