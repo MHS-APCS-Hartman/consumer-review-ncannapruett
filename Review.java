@@ -216,23 +216,22 @@ public class Review {
     {
         String file = textToString(fileName);
         String word = "";
-        String space = " ";
         String sentence = "";
         
         for(int i = 0; i < file.length(); i++)
         {
             String letter = file.substring(i, i + 1);
-            if(letter.equals(space) || i == file.length() - 1)
+            if(letter.equals(SPACE) || i == file.length() - 1)
             {
                 if(i == file.length() - 1)  word += letter;
 
                 if(word.startsWith("*"))
                 {
-                    sentence += randomPositiveAdj() + getPunctuation(word) + " ";
+                    sentence += randomPositiveAdj() + getPunctuation(word) + SPACE;
                 }
                 else
                 {
-                    sentence += word + " ";
+                    sentence += word + SPACE;
                 }
                 word = "";
             }
