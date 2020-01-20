@@ -167,7 +167,8 @@ public class Review {
   }
   public static double totalSentiment(String fileName) 
 {
-   String file = textToString(fileName) String word = "";
+   String file = textToString(fileName) 
+   String word = "";
    String space = " ";
    double totalVal = 0.0;
    
