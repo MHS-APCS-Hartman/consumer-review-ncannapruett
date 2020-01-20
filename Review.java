@@ -190,4 +190,56 @@ public class Review {
             totalVal += sentimentVal(word); 
             return totalVal; 
     }
+  public static int starRating(String fileName) 
+    {
+        int totalSentiment = (int) totalSentiment(fileName);
+           
+        if(totalSentiment < 0) 
+        {
+            return 1; 
+        }
+        else if(totalSentiment < 5) 
+        {
+            return 2; 
+        }
+        else if(totalSentiment < 15) 
+        {
+            return 3;
+        }
+        else 
+        {
+            return 4; 
+        }
+    }
+
+    public static String fakeReview(String fileName)
+    {
+        String file = textToString(fileName);
+        String word = "";
+        String space = " ";
+        String sentence = "";
+        
+        for(int i = 0; i < file.length(); i++)
+        {
+            String letter = file.substring(i, i + 1);
+            if(letter.equals(space) == false || i == file.length() - 1)
+            {
+                if(word.startsWith("*"))
+                {
+                    sentence += randomPositiveAdj() + " ";
+                }
+                else
+                {
+                    sentence += word + " ";
+                }
+                word = "";
+            }
+            else
+            {
+                word += letter;
+            }
+        }
+        return sentence;
+    }
+  
 }
