@@ -278,7 +278,7 @@ public class Review {
                         newAdj = word.substring(1);
                     }
                     
-                    sentence += randomPositiveAdj() + getPunctuation(word) + SPACE;
+                    sentence += newAdj + getPunctuation(word) + SPACE;
                 }
                 else
                 {
