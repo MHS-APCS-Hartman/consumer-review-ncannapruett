@@ -222,8 +222,10 @@ public class Review {
         for(int i = 0; i < file.length(); i++)
         {
             String letter = file.substring(i, i + 1);
-            if(letter.equals(space) == false || i == file.length() - 1)
+            if(letter.equals(space) || i == file.length() - 1)
             {
+                if(i == file.length() - 1)  word += letter;
+
                 if(word.startsWith("*"))
                 {
                     sentence += randomPositiveAdj() + " ";
