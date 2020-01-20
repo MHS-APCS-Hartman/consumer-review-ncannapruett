@@ -228,7 +228,7 @@ public class Review {
 
                 if(word.startsWith("*"))
                 {
-                    sentence += randomPositiveAdj() + " ";
+                    sentence += randomPositiveAdj() + getPunctuation(word) + " ";
                 }
                 else
                 {
