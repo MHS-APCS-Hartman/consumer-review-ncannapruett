@@ -165,6 +165,10 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  //A method that returns the sentiment value of a word.
+  //Positive words (Ex: Happy) will have a positive sentiment value.
+  //Negative words (Ex: Horrible) will have a negitive sentiment value.
+  //Neutral words will return a sentiment value of 0.
   public static double totalSentiment(String fileName) 
     {
            String file = textToString(fileName);
@@ -191,6 +195,8 @@ public class Review {
             return totalVal; 
     }
   
+  // This method Looks at the sentiment value of a word from the 
+  // method totalSentiment() and returns a star rating for the word.
   public static int starRating(String fileName) 
     {
         int totalSentiment = (int) totalSentiment(fileName);
@@ -212,7 +218,10 @@ public class Review {
             return 4; 
         }
     }
-
+    
+    // This method looks for adjectives with a star infront of them
+    // (Adjectives that need changing) and replaces that adjective
+    // with a positive or negative adjective.
     public static String fakeReview(String fileName)
     {
         String file = textToString(fileName);
@@ -244,6 +253,12 @@ public class Review {
         return sentence;
     }
     
+    // This method looks for adjectives with a star infront of them
+    // (Adjectives that need changing) and replaces that adjective
+    // with a MORE positive or MORE negative adjective.
+    // If old adjectives sentiment value is 0.1, the method
+    // will replace the old adjective with an adjective
+    // that has a sentiment value of greater than 0.1. 
     public static String fakeReviewStronger(String fileName)
     {
         String file = textToString(fileName);
