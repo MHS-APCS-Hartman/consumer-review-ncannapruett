@@ -191,7 +191,6 @@ public class Review {
             totalVal += sentimentVal(word); 
             return totalVal; 
     }
-  
   public static int starRating(String fileName) 
     {
         int totalSentiment = (int) totalSentiment(fileName);
@@ -212,5 +211,36 @@ public class Review {
         {
             return 4; 
         }
-  }
+    }
+
+    public static String fakeReview(String fileName)
+    {
+        String file = textToString(fileName);
+        String word = "";
+        String sentence = "";
+        
+        for(int i = 0; i < file.length(); i++)
+        {
+            String letter = file.substring(i, i + 1);
+            if(letter.equals(SPACE) || i == file.length() - 1)
+            {
+                if(i == file.length() - 1)  word += letter;
+
+                if(word.startsWith("*"))
+                {
+                    sentence += randomAdjective() + getPunctuation(word) + SPACE;
+                }
+                else
+                {
+                    sentence += word + SPACE;
+                }
+                word = "";
+            }
+            else
+            {
+                word += letter;
+            }
+        }
+        return sentence;
+    }
 }
