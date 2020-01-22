@@ -165,7 +165,6 @@ public class Review {
       return randomNegativeAdj();
     }
   }
-  
   public static double totalSentiment(String fileName) 
     {
            String file = textToString(fileName);
@@ -191,6 +190,7 @@ public class Review {
             totalVal += sentimentVal(word); 
             return totalVal; 
     }
+  
   public static int starRating(String fileName) 
     {
         int totalSentiment = (int) totalSentiment(fileName);
@@ -225,10 +225,60 @@ public class Review {
             if(letter.equals(SPACE) || i == file.length() - 1)
             {
                 if(i == file.length() - 1)  word += letter;
-
+                
                 if(word.startsWith("*"))
                 {
                     sentence += randomAdjective() + getPunctuation(word) + SPACE;
+                }
+                else
+                {
+                    sentence += word + SPACE;
+                }
+                word = "";
+            }
+            else
+            {
+                word += letter;
+            }
+        }
+        return sentence;
+    }
+    
+    public static String fakeReviewStronger(String fileName)
+    {
+        String file = textToString(fileName);
+        String word = "";
+        String sentence = "";
+        
+        for(int i = 0; i < file.length(); i++)
+        {
+            String letter = file.substring(i, i + 1);
+            if(letter.equals(SPACE) || i == file.length() - 1)
+            {
+                if(i == file.length() - 1)  word += letter;
+
+                if(word.startsWith("*"))
+                {
+                    double s = sentimentVal(word.substring(1));
+                    String newAdj = "";
+                    
+                    if(s < 0)
+                    {
+                        newAdj = randomAdjective();
+                    }
+                    else if(s > 0)
+                    {
+                        while(sentimentVal(newAdj) <= s)
+                        {
+                            newAdj = randomAdjective();
+                        }
+                    }
+                    else
+                    {
+                        newAdj = word.substring(1);
+                    }
+                    
+                    sentence += newAdj + getPunctuation(word) + SPACE;
                 }
                 else
                 {
