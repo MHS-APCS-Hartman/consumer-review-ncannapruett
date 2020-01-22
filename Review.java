@@ -190,7 +190,7 @@ public class Review {
             totalVal += sentimentVal(word); 
             return totalVal; 
     }
-   public static int starRating(String fileName) 
+  public static int starRating(String fileName) 
 {
    int totalSentiment = (int) totalSentiment(fileName);
    
