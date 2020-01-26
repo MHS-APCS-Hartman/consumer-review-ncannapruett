@@ -169,31 +169,26 @@ public class Review {
   //Positive words (Ex: Happy) will have a positive sentiment value.
   //Negative words (Ex: Horrible) will have a negitive sentiment value.
   //Neutral words will return a sentiment value of 0.
-  public static double totalSentiment(String fileName) 
-    {
-           String file = textToString(fileName);
-           String word = "";
-           String space = " ";
-           double totalVal = 0.0;
-           
-           for(int i = 0; i < file.length(); i++) 
-           {
-              String letter = file.substring(i, i + 1);
-              if(letter.equals(space)) 
-              {
-                 removePunctuation(word); 
-                 totalVal += sentimentVal(word); 
-                 word = "";
-              } 
-              else 
-              {
-                 word += letter; 
-              }
-            }
-            removePunctuation(word); 
-            totalVal += sentimentVal(word); 
-            return totalVal; 
-    }
+  public static double totalSentiment(String fileName)
+  {
+  		String review = textToString(fileName);
+   		String word = "";
+   		double total = 0;
+   		for (int i = 0; i < review.length(); i++)
+   		{
+      		if (review.substring(i, i+1).equals(" ") == false)
+      		{
+         			word += review.substring(i, i+1);
+      		}
+      		else
+      		{
+         	total += sentimentVal(removePunctuation(word));
+         	word = "";
+      		}
+   		}
+   		total += sentimentVal(removePunctuation(word));
+   		return total;
+  }
   
   // This method Looks at the sentiment value of a word from the 
   // method totalSentiment() and returns a star rating for the word.
