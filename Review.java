@@ -176,15 +176,15 @@ public class Review {
    	double total = 0;
    	for (int i = 0; i < review.length(); i++)
    	{
-      	if (review.substring(i, i+1).equals(" ") == false)
-      	{
-         	word += review.substring(i, i+1);
-      	}
-      	else
-      	{
-          total += sentimentVal(removePunctuation(word));
-         	word = "";
-      	}
+          if (review.substring(i, i+1).equals(" ") == false)
+          {
+            word += review.substring(i, i+1);
+          }
+          else
+          {
+            total += sentimentVal(removePunctuation(word));
+            word = "";
+          }
    	}
    	total += sentimentVal(removePunctuation(word));
    	return total;
