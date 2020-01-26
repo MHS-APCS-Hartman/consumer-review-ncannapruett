@@ -171,23 +171,23 @@ public class Review {
   //Neutral words will return a sentiment value of 0.
   public static double totalSentiment(String fileName)
   {
-  		String review = textToString(fileName);
-   		String word = "";
-   		double total = 0;
-   		for (int i = 0; i < review.length(); i++)
-   		{
-      		if (review.substring(i, i+1).equals(" ") == false)
-      		{
-         			word += review.substring(i, i+1);
-      		}
-      		else
-      		{
-         	total += sentimentVal(removePunctuation(word));
+  	String review = textToString(fileName);
+   	String word = "";
+   	double total = 0;
+   	for (int i = 0; i < review.length(); i++)
+   	{
+      	if (review.substring(i, i+1).equals(" ") == false)
+      	{
+         	word += review.substring(i, i+1);
+      	}
+      	else
+      	{
+          total += sentimentVal(removePunctuation(word));
          	word = "";
-      		}
-   		}
-   		total += sentimentVal(removePunctuation(word));
-   		return total;
+      	}
+   	}
+   	total += sentimentVal(removePunctuation(word));
+   	return total;
   }
   
   // This method Looks at the sentiment value of a word from the 
